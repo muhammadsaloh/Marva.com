@@ -1,0 +1,21 @@
+<%- include('parts/header') %>
+
+<% if( products ) { %>
+<ul class="container list-item">
+    <li class="filterDiv <%= products.type %>">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="<%= products.img %>" alt="<%= products.type %> image">
+            <div class="card-body">
+                <h5 class="card-title"><%= products.name %></h5>
+                <p class="price"> <%= products.price %></p>
+                <p class="card-text"><%= products.title %></p>
+            </div>
+        </div>
+    </li>
+</ul>
+<% } else {%>
+<pre> Products did not remain </pre>
+<% } %>
+
+
+<%- include('parts/footer') %>

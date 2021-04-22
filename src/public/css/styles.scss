@@ -1,0 +1,58 @@
+#myBtnContainer {
+    margin-top: 100px;
+}
+
+.container {
+    overflow: hidden;
+}
+  
+.filterDiv {
+    display: none; /* Hidden by default */
+}
+  
+  /* The "show" class is added to the filtered elements */
+.show {
+    display: block;
+}
+  
+.btns {
+    justify-content: space-between;
+}
+
+.all-btns {
+    width: 80px;
+    height: 70px;
+    p {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+.divBtns {
+    p {
+        text-align: center;
+        margin: 0;
+    }
+}
+
+.list-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+
+    li {
+        margin: 5px;
+        margin-top: 10px;
+    }
+}
+
+.card-img-top {
+    border-bottom: solid 1px lightgray;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+}

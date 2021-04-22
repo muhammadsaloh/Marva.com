@@ -1,0 +1,43 @@
+<%- include('parts/header') %>
+
+<% var error %>
+
+<section class="vh-100 d-flex flex-column justify-content-center align-items-center registration">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card text-center p-4">
+                    <h1>Marva.com</h1>
+                    <strong class="text-muted registration-slogan">
+                        E-commerce site.
+                    </strong>
+                    <form class="mt-4" method="POST">
+                        <% if(error) {%>
+                        <div class="alert alert-danger">
+                            <%= error %>
+                        </div>
+                        <% } %>
+                        <input type="text" name="name" class="form-control my-3 bg-light" placeholder="Full name">
+                        <input type="tel" name="phone" class="form-control my-3 bg-light" value="+998" placeholder="Mobile number">
+                        <input type="password" name="password" class="form-control my-3 bg-light" placeholder="At least 6 characters.">
+                        <select name="gender" id="">
+                            <option value="male">male</option>
+                            <option value="female">female</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Sign up
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="card d-flex text-center p-4 align-items-center">
+                    <p class="m-0 p-0">Have an account? <a href="/login">Log in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
