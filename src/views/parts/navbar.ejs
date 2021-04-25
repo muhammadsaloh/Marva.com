@@ -23,22 +23,22 @@
             <h2>Marva.com</h2>
         </a>
         <div class="collapse navbar-collapse" id="navbarScroll">
-            <% if ( user.name == 'adminBro' && user.phone == 998001110000 ) { %>  
+            <% if ( user && user.name == 'adminBro' && user.phone == 998001110000 ) { %>  
                 <a href="/add" class="asd">/add</a>
                 
                 <a href="/users">/users</a>
             <% } %> 
             <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
-                    <a class="nav-link w-100 d-block" aria-current="page" href="#">
-                        <img class="d-block" src="/images/like.svg" alt="Like icon" width="30">
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link w-100 d-block" aria-current="page" href="/basket">
                         <img class="d-block" src="/images/cart.svg" alt="Basket icon">
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link w-100 d-block" aria-current="page" href="/orders">
+                        <img class="d-block" src="/images/cash.svg" alt="Cash icon">
+                    </a>
+                </li> 
             </ul>
         </div>
     </div>

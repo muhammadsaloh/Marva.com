@@ -1,6 +1,4 @@
-const client = require('../modules/mongo')
-const { Schema } = require('mongoose')
-
+const { Schema, model } = require('mongoose')
 
 const UserSchema = new Schema({
     name: {
@@ -58,32 +56,23 @@ UserSchema.methods.addTocart = function (product) {
     return this.save()
 }
 
-async function UserModel () {
-    let db = await client()
-    return await db.model('users', UserSchema)
+UserSchema.methods.removeFromCart = function(id) {
+  let items = [...this.cart.items]
+  const idx = items.findIndex(c => c.productId.toString() === id.toString())
+
+  if (items[idx].count === 1) {
+    items = items.filter(c => c.productId.toString() !== id.toString())
+  } else {
+    items[idx].count--
+  }
+
+  this.cart = {items}
+  return this.save()
 }
 
-async function createUser(name, phone, password, gender) {
-    const db = await UserModel()
-    return await db.create({
-        name, phone, password, gender, cart: {items: []}
-    })
+UserSchema.methods.clearCart = function() {
+  this.cart = {items: []}
+  return this.save()
 }
 
-async function findUser(login) {
-    let object = { phone: login }
-    const db = await UserModel()
-    return await db.findOne(object)
-}
-
-async function findUsers () {
-    const db = await UserModel()
-    return await db.find()
-}
-
-
-module.exports = {
-    createUser,
-    findUser,
-    findUsers
-}
+module.exports = model('users', UserSchema) 

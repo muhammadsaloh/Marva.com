@@ -1,21 +1,46 @@
 <%- include('parts/header') %>
 
-<% if( products ) { %>
-<ul class="container list-item">
-    <li class="filterDiv <%= products.type %>">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="<%= products.img %>" alt="<%= products.type %> image">
-            <div class="card-body">
-                <h5 class="card-title"><%= products.name %></h5>
-                <p class="price"> <%= products.price %></p>
-                <p class="card-text"><%= products.title %></p>
+<div class="container">
+    <h1>Products</h1>
+    <% if( products ) { %>
+        <div class="main">
+            <div class="content">
+                <h1>Lorem ipsum dolor sit.</h1>
+                <hr>
+                <div class="d-flex align-items-center">
+                    <img src="/images/speed.svg" alt="icon">
+                    <h3 class="mx-2">Fast shipping</h3>
+                </div>
+                <h4>Briefly about the product</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus omnis consectetur id dolor? Iure aperiam deleniti dolorem maiores incidunt magnam harum! Facere excepturi deserunt neque soluta aliquam corporis eos ullam maiores voluptatum. Praesentium atque provident ab eius. Deserunt, voluptate necessitatibus.</p>
             </div>
+            <ul class="list-item">
+            <li class="filterDiv <%= products.type %>">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="<%= products.img %>" alt="<%= products.type %> image">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= products.name %></h5>
+                        <p class="price"> <%= products.price %></p>
+                        <p class="card-text"><%= products.title %></p>
+                    </div>
+                </div>
+            </li>
+            </ul>
         </div>
-    </li>
-</ul>
-<% } else {%>
-<pre> Products did not remain </pre>
-<% } %>
+        <div class="imgDiv my-4">
+            <img class="mx-3 img-thumbnail" src="<%= products.img %>" alt="<%= products.type %>" width="200" height="200">
+            <img class="mx-3 img-thumbnail" src="<%= products.img %>" alt="<%= products.type %>" width="200" height="200">
+            <img class="mx-3 img-thumbnail" src="<%= products.img %>" alt="<%= products.type %>" width="200" height="200">
+            <img class="mx-3 img-thumbnail" src="<%= products.img %>" alt="<%= products.type %>" width="200" height="200">
+        </div>
+        <div class="check d-flex align-items-center">
+            <img src="/images/check.svg" alt="">
+            <h4 class="mx-3">Delivery within Uzbekistan</h4>
+        </div>
+    <% } else {%>
+    <pre> Products did not remain </pre>
+    <% } %>
+</div>
 
 
 <%- include('parts/footer') %>

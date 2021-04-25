@@ -1,1 +1,38 @@
-<h1> Basket </h1>
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+<div class="container my-5" id="card">
+    <h1> Basket </h1>
+<% if(products.length) { %> 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Count</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% for(let i in products) { %> 
+      <tr>
+        <td><%= products[i].name %> </td>
+        <td><%= products[i].count %> </td>
+        <td>
+          <button class="btn btn-danger js-remove" id="relo" data-id="<%= products[i]._id %>">Delete</button>
+        </td>
+      </tr>
+      <% } %> 
+    </tbody>
+  </table>
+
+  <p > <strong>Цена:</strong> <span class="price"><%= price %> </span></p>
+
+  <form action="/orders" method="POST">
+    <button type="submit" class="btn btn-outline-primary">Make an Order</button>
+  </form>
+<% } else { %> 
+  <p>Basket did not remain</p>
+<% } %> 
+</div>
+<div class="my-5"></div>
+<%- include('parts/footer') %>

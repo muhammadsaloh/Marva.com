@@ -54,13 +54,12 @@
 .list-item {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    // justify-content: space-around;
     margin-top: 50px;
 
     li {
-        margin: 5px;
-        margin-top: 10px;
-
+        margin: 0 45px;
+        margin-top: 30px;
         .card {
             width: 280px;
             height: 380px;
@@ -162,6 +161,26 @@
     margin-left: 10px;
 }
 
+.lorem {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin-top: 20px;
 
+}
 
+.main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
+    .content {
+        width: 500px;
+    }
+}
+
+.check {
+    margin-left: 330px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}

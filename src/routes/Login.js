@@ -2,7 +2,7 @@ const { Router } = require('express')
 const Joi = require('joi')
 const { checkCrypt } = require('../modules/bcrypt')
 const { genereteJWTToken } = require('../modules/jwt')
-const { findUser } = require('../models/UserModel')
+const User = require('../models/UserModel')
 const AuthMiddleware = require('../middlewares/AuthMiddlewares')
 
 
@@ -28,7 +28,7 @@ router.get('/', (request, response) => {
 router.post('/', async (request, response) => {
     try {
         let data = await LoginValidation.validateAsync(request.body)
-        let user = await findUser(data.login)
+        let user = await User.findOne({ phone: data.login })
         
         if (!user) {
             throw new Error("User is not found")

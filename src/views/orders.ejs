@@ -1,0 +1,36 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+<div class="container my-4">
+    <h1>Orders</h1>
+
+<% if (orders.length) { %> 
+  <% orders.forEach(i => { %>
+    <div class="row">
+        <div class="card p-3" style="width: 20rem;">
+          <div class="card-content">
+            <span class="card-title">
+              Order <small><%= i._id %> </small>
+            </span>
+            <p class="date"><%= i.date %> </p>
+            <p><em><%= user.name %> </em> <%= user.phone %>  </p>
+
+            <ol>
+            <% for(let e in i.products) {%>
+                    <li>
+                      <%= i.products[e].product.name %>  (x<strong> <%= i.products[e].count %>  </strong>)
+                    </li>
+                    <% } %>  
+            </ol>
+            <hr>
+
+            <p>Price: <span class="price"><%= i.price %> </span></p>
+          </div>
+        </div>
+    </div>
+    <% }) %> 
+<% } else { %> 
+  <p>Orders did not remain</p>
+<% } %> 
+</div>
+<div class="my-5"></div>
+<%- include('parts/footer') %>

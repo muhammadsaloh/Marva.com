@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const UserMiddleware = require('../middlewares/UserMiddlewares')
-const { editProduct, deleteProduct } = require('../models/ProductModel')
+const Product = require('../models/ProductModel')
 
 const router = Router()
 router.use(UserMiddleware)
@@ -18,7 +18,7 @@ router.post('/', UserMiddleware, async (request, response) => {
     try {
         const { id } = request.body
         delete request.body.id
-        await editProduct(id, request.body)
+        await Product.findByIdAndUpdate(id, request.body)
         response.redirect('/home')
     } catch (e) {
         response.status(400).send({
@@ -31,7 +31,7 @@ router.post('/', UserMiddleware, async (request, response) => {
 router.post('/remove', UserMiddleware, async (request, response) => {
     try {
         let { id } = request.body
-        await deleteProduct( id )
+        await Product.findByIdAndDelete( id )
         response.redirect('/home')
     } catch (e) {
         response.status(400).send({

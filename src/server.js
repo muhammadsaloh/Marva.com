@@ -1,14 +1,27 @@
 const Express = require('express')
+const mongoose = require('mongoose')
 const CookieParser = require('cookie-parser')
 const Path = require('path')
 const Fs = require('fs')
 require('dotenv').config({ path: Path.join(__dirname, ".env")})
 const PORT = process.env.PORT
+const URL = process.env.URL
+
+// database
+async function start () {
+    return await mongoose.connect(URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true
+    });
+}
 
 if(!PORT){
     throw new ReferenceError("PORT is not defined")
 }
 console.log(PORT);
+start()
 
 const application = Express()
 

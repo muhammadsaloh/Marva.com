@@ -1,6 +1,6 @@
 let { Router } = require('express')
 const Joi = require('joi')
-const { createUser } = require('../models/UserModel')
+const User = require('../models/UserModel')
 const { generateCrypt } = require('../modules/bcrypt')
 const AuthMiddleware = require('../middlewares/AuthMiddlewares')
 
@@ -39,7 +39,14 @@ router.get('/', (request, response) => {
 router.post('/', async (request, response) => {
     try {
         const { name, phone, password, gender } = await RegistrationValidation.validateAsync(request.body)
-        await createUser( name, phone, generateCrypt(password), gender )
+        const user = new User({
+            name: name,
+            phone: phone,
+            password: generateCrypt(password),
+            gender: gender,
+            cart: {items: []}
+        })
+        await user.save()
         response.redirect('/login')
     } catch (e) {
         if(String(e).includes("duplicate key")){

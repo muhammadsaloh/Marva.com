@@ -4,21 +4,21 @@
 
     <%-// include('parts/slideshow') %>
     <div id="myBtnContainer" class="d-flex btns">
-        <button class="btn btn-outline-primary active shadow-none all-btns" onclick="filterSelection('all')">
+        <button class="btnC btn btn-outline-primary active shadow-none all-btns" onclick="filterSelection('all')">
             <p>All</p>
         </button>
         <div class="divBtns">
-            <button class="btn btn-outline-primary shadow-none" onclick="filterSelection('phone')">
+            <button class="btnC btn btn-outline-primary shadow-none" onclick="filterSelection('phone')">
                 <img src="/images/phone.svg" alt="phone"></button>
             <p>Phones</p>
         </div>
         <div class="divBtns">
-            <button class="btn btn-outline-primary shadow-none" onclick="filterSelection('notebook')">
+            <button class="btnC btn btn-outline-primary shadow-none" onclick="filterSelection('notebook')">
                 <img src="/images/laptop.svg" alt="laptop"> </button>
             <p>Laptops</p>
         </div>
         <div class="divBtns">
-            <button class="btn btn-outline-primary shadow-none" onclick="filterSelection('camera')">
+            <button class="btnC btn btn-outline-primary shadow-none" onclick="filterSelection('camera')">
                 <img src="/images/headphone.svg" alt=""></button>
             <p>Headphones</p>
         </div>
@@ -36,14 +36,16 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= products[i].name %></h5>
                         <p class="price"> <%= products[i].price %></p>
-                        <p class="card-text"><%= products[i].title %></p>
-                        <% if ( user.name == 'adminBro' && user.phone == 998001110000 ) { %>
-                            <a href="/edit/<%= products[i]._id %>">edit</a>
-                        <% } %>
-                        <form action="/basket/add" method="POST">
-                            <input type="hidden" name="id" value="<%= products[i]._id %>">
-                            <button type="submit" class="btn btn-outline-primary">Add</button>
-                        </form>
+                        <p class="card-text overflow-hidden"><%= products[i].title %></p>
+                        <div class="lorem">
+                            <% if ( user.name == ADMIN && user.phone == PHONE ) { %>
+                            <a class="btn btn-outline-danger" href="/edit/<%= products[i]._id %>">Edit</a>
+                            <% } %>
+                            <form action="/basket/add" method="POST">
+                                <input type="hidden" name="id" value="<%= products[i]._id %>">
+                                <button type="submit" class="btn btn-outline-primary">Add</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </li>

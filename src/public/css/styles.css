@@ -59,14 +59,12 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
   margin-top: 50px;
 }
 
 .list-item li {
-  margin: 5px;
-  margin-top: 10px;
+  margin: 0 45px;
+  margin-top: 30px;
 }
 
 .list-item li .card {
@@ -166,5 +164,37 @@
 
 .navbar-brand {
   margin-left: 10px;
+}
+
+.lorem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 150px;
+  margin-top: 20px;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main .content {
+  width: 500px;
+}
+
+.check {
+  margin-left: 330px;
+  margin-top: 40px;
+  margin-bottom: 100px;
 }
 /*# sourceMappingURL=styles.css.map */
