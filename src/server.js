@@ -20,7 +20,6 @@ async function start () {
 if(!PORT){
     throw new ReferenceError("PORT is not defined")
 }
-console.log(PORT);
 start()
 
 const application = Express()
