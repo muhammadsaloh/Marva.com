@@ -3,7 +3,6 @@ function filterSelection(c) {
   let x, i;
   x = document.getElementsByClassName("filterDiv");
   if (c == "all") c = "";
-  // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
   for (i = 0; i < x.length; i++) {
     removeClass(x[i], "show");
     if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
@@ -24,7 +23,7 @@ function addClass (element, name) {
 }
 
 
-// Hide elements that are not selected
+// Hide elements  selected
 function removeClass(element, name) {
 	let i, arr1, arr2;
 	arr1 = element.className.split(" ");
@@ -39,7 +38,6 @@ function removeClass(element, name) {
 
 
 
-// Add active class to the current control button (highlight it)
 let btnContainer = document.getElementById("myBtnContainer");
 let btns = btnContainer.getElementsByClassName("btn");
 for (let i = 0; i < btns.length; i++) {
@@ -57,3 +55,26 @@ price.forEach(i => {
     style: 'currency'
   }).format(i.textContent)
 })
+
+/* navigation bar */
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

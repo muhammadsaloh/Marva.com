@@ -8,10 +8,20 @@
 
 .filterDiv {
   display: none;
-  /* Hidden by default */
 }
 
-/* The "show" class is added to the filtered elements */
+.asd {
+  margin-right: 15px;
+}
+
+.filterDiv:hover {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* show filtered elements */
 .show {
   display: block;
 }
@@ -38,6 +48,11 @@
   margin: 0;
 }
 
+.anker {
+  text-decoration: none;
+  color: #181819;
+}
+
 .list-item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -54,6 +69,40 @@
   margin-top: 10px;
 }
 
+.list-item li .card {
+  width: 280px;
+  height: 380px;
+  overflow: hidden;
+}
+
+.list-item li .card .image {
+  width: 280px;
+  height: 180px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+.list-item li .card .image:hover {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.2);
+}
+
+.navbar-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .card-img-top {
   border-bottom: solid 1px lightgray;
 }
@@ -61,5 +110,61 @@
 .price {
   font-size: 20px;
   font-weight: bold;
+}
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #F8F9FA;
+  overflow-x: hidden;
+  padding-top: 60px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #0D6EFD;
+  display: block;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  -webkit-transition: margin-left .5s;
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.navbar-brand {
+  margin-left: 10px;
 }
 /*# sourceMappingURL=styles.css.map */

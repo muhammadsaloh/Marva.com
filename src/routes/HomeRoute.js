@@ -9,9 +9,9 @@ router.use(UserMiddleware)
 
 router.get('/', UserMiddleware, async (request, response) => {
     let user = await findUser(request.user.phone)
+    
     let products = await findProduct()
         // .populate('userId')
-    // console.log(products);
     response.render('index', {
         title: "Homepage",
         user,
@@ -22,7 +22,6 @@ router.get('/', UserMiddleware, async (request, response) => {
 router.get('/:id', UserMiddleware, async (request, response) => {
     let products = await findByIdP(request.params.id)
     response.render('product', {
-        layout: 'empty',
         title: "Products",
         products
     })

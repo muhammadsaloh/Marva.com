@@ -1,5 +1,6 @@
 const client = require('../modules/mongo')
-const { Schema, model } = require('mongoose')
+const { Schema } = require('mongoose')
+
 
 const UserSchema = new Schema({
     name: {
@@ -21,7 +22,7 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    basket: {
+    cart: {
         items: [
             {
                 count: {
@@ -39,6 +40,24 @@ const UserSchema = new Schema({
     }
 })
 
+UserSchema.methods.addTocart = function (product) {
+    const items = [...this.cart.items]
+    const idx = items.findIndex(c => {
+        return c.productId.toString() === product._id.toString()
+    })
+    if (idx >= 0) {
+        items[idx].count = items[idx].count + 1
+    } else {
+        items.push({
+            productId: product._id,
+            count: 1
+        })
+    }
+
+    this.cart = {items}
+    return this.save()
+}
+
 async function UserModel () {
     let db = await client()
     return await db.model('users', UserSchema)
@@ -47,7 +66,7 @@ async function UserModel () {
 async function createUser(name, phone, password, gender) {
     const db = await UserModel()
     return await db.create({
-        name, phone, password, gender
+        name, phone, password, gender, cart: {items: []}
     })
 }
 
@@ -57,36 +76,14 @@ async function findUser(login) {
     return await db.findOne(object)
 }
 
-async function findAdmin( phone, password ) {
-    let object = { phone: phone, password: password }
+async function findUsers () {
     const db = await UserModel()
-    return await db.findOne(object)
-}
-
-
-UserSchema.methods.addToBasket = function (products) {
-    const items = [...this.basket.items]
-    const idx = items.findIndex( c => {
-        return c.productId.toString() === products._id.toString()
-    })
-
-    if (idx >= 0) {
-        items[idx].count = items[idx].count + 1
-    } else {
-        items.push({
-            productId: products._id,
-            count: 1
-        })
-    }
-
-    this.basket = {items}
-    return this.save()
+    return await db.find()
 }
 
 
 module.exports = {
     createUser,
     findUser,
-    findAdmin
+    findUsers
 }
-module.exports = model('users', UserSchema)

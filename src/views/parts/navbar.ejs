@@ -1,10 +1,33 @@
-<nav class="navbar p-3 navbar-expand-lg navbar-light bg-light border-bottom fixed-top">
-    <div class="container">
+<% var user %> 
+<div id="mySidenav" class="sidenav">
+    <% if (user) { %> 
+    <h4>Welcome, <%= user.name %> </h4>
+    <% } else { %>
+        <h5>Welcome, Bro..</h5>
+        <% } %>  
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+    <a class="nav-item" href="/exit">
+        <img src="/images/door.svg" alt="door">
+    </a>
+</div>
+<nav class="navbar p-3 navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container align-items-center">
+        <span onclick="openNav()">
+            <img src="/images/menu.svg" alt="menu svg">
+        </span>
         <a class="navbar-brand" href="/">
             <h2>Marva.com</h2>
         </a>
         <div class="collapse navbar-collapse" id="navbarScroll">
-            <a href="/add">add</a>
+            <% if ( user.name == 'adminBro' && user.phone == 998001110000 ) { %>  
+                <a href="/add" class="asd">/add</a>
+                
+                <a href="/users">/users</a>
+            <% } %> 
             <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
                     <a class="nav-link w-100 d-block" aria-current="page" href="#">
@@ -13,16 +36,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link w-100 d-block" aria-current="page" href="/basket">
-                        <img class="d-block" src="/images/cart.svg" alt="Basket icon" width="30">
+                        <img class="d-block" src="/images/cart.svg" alt="Basket icon">
                     </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <li>
-                        <a class="dropdown-item" href="/exit">Exit</a>
-                    </li>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-

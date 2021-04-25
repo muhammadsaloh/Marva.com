@@ -1,27 +1,39 @@
 const { Router } = require('express')
 const UserMiddleware = require('../middlewares/UserMiddlewares')
 const { findUser } = require('../models/UserModel')
-const { findProduct, findByIdP } = require('../models/ProductModel')
+const { findByIdP } = require('../models/ProductModel')
+
 
 const router = Router()
 router.use(UserMiddleware)
 
 router.post('/add', UserMiddleware, async (request, response) => {
-    let products = await findByIdP(request.body.id)
-    await request.user.addToBasket(products)
-    response.redirect('/basket')
+    try {
+        const product = await findByIdP(request.body.id);
+        let one = await request.user.addTocart(product)
+        console.log(one)
+        response.redirect('/basket')
+    } catch (e) {
+        console.log(e)
+        response.status(400).send({
+            ok: false,
+            message: "Bad request",
+        })
+    }
 })
 
+
 router.get('/', UserMiddleware, async (request, response) => {
-    // let user = await findUser(request.user.phone)
+    // const { phone } = request.params
+    // let user = await findUser(phone)
     // let products = await findProduct({})
-    response.json({test: true})
-    // response.render('basket', {
-    //     title: "Basket Page",
-    //     user,
-    //     products
-    // })
+    
+    response.render('basket', {
+        title: "Basket Page"
+    })
 })
+
+
 
 
 module.exports = {

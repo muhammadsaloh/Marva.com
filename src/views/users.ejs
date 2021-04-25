@@ -1,0 +1,25 @@
+<%- include('parts/header') %>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% if (users) { %> 
+      <% for( let i in users ) {%> 
+    <tr>
+      <th scope="row"> <%= i %>  </th>
+      <td> <%= users[i].name %>  </td>
+      <td> <%= users[i].phone %>  </td>
+      <td> <%= users[i].gender %>  </td>
+    </tr>
+    <% } %> 
+    <% } %> 
+  </tbody>
+</table>
+
+<%- include('parts/footer') %>

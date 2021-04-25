@@ -43,7 +43,7 @@ router.post('/', async (request, response) => {
         response.redirect('/login')
     } catch (e) {
         if(String(e).includes("duplicate key")){
-            e = "Phone or email is not available"
+            e = "Phone is not available"
         }
         response.render('registration', {
             title: "Sign up",

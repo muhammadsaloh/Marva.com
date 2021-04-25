@@ -1,0 +1,57 @@
+<%- include('parts/header') %>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h1> Edit product </h1>
+
+        <form action="/edit" method="POST">
+            <div class="form-group mt-2">
+                <label for="title"> Name product </label>
+                <input id="title" type="text" name="name" class="form-control" placeholder="Name product" required />
+                <span class="helper-text" data-error="name"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="price"> Price </label>
+                <input id="price" type="number" name="price" class="form-control" placeholder="Price course" required />
+                <span class="helper-text" data-error="Price"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="select"> Model </label>
+                <select name="type" id="select">
+                    <optgroup label="Tip">
+                        <option value="notebook">Notebook</option>
+                        <option value="phone">Phone</option>
+                        <option value="headphone">Headphone</option>
+                        <option value="watch">Watch</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="content"> Information </label>
+                <textarea id="content" type="text" name="title" class="form-control" placeholder="Text Content" required
+                    cols="30" rows="5"></textarea>
+                <span class="helper-text" data-error="Content"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="img"> URL image </label>
+                <input id="img" type="url" name="img" class="form-control" placeholder="URL image" required />
+                <span class="helper-text" data-error="Url img"></span>
+            </div>
+
+            <input type="hidden" name="id" value="<%= productId %>">
+            <button type="submit" class="btn btn-outline-primary btn-lg w-100 mt-2">Edit</button>
+        </form>
+        <form action="/edit/remove" method="POST">
+            <input type="hidden" name="id" value="<%= productId %>">
+            <button class="btn btn-outline-danger btn-lg w-100 mt-2">Delete</button>
+        </form>
+    </div>
+</div>
+
+
+<%- include('parts/footer') %>
+

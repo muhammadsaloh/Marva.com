@@ -1,7 +1,8 @@
 <%- include('parts/header') %>
 <%- include('parts/navbar') %>
-
 <div class="container">
+
+    <%-// include('parts/slideshow') %>
     <div id="myBtnContainer" class="d-flex btns">
         <button class="btn btn-outline-primary active shadow-none all-btns" onclick="filterSelection('all')">
             <p>All</p>
@@ -12,17 +13,12 @@
             <p>Phones</p>
         </div>
         <div class="divBtns">
-            <button class="btn btn-outline-primary shadow-none" onclick="filterSelection('notebook')"> 
+            <button class="btn btn-outline-primary shadow-none" onclick="filterSelection('notebook')">
                 <img src="/images/laptop.svg" alt="laptop"> </button>
             <p>Laptops</p>
         </div>
         <div class="divBtns">
-            <button class="btn btn-outline-primary shadow-none" onclick="filterSelection('watch')"> 
-                <img src="/images/watch.svg" alt=""></button>
-            <p>Watches</p>
-        </div>
-        <div class="divBtns">
-            <button class="btn btn-outline-primary shadow-none" onclick="filterSelection('camera')"> 
+            <button class="btn btn-outline-primary shadow-none" onclick="filterSelection('camera')">
                 <img src="/images/headphone.svg" alt=""></button>
             <p>Headphones</p>
         </div>
@@ -31,25 +27,29 @@
 
 
 <% if( products.length ) { %>
-<% for(let i in products) { %>
 <ul class="container list-item">
-    <li class="filterDiv <%= products[i].type %>">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="<%= products[i].img %>" alt="<%= products[i].type %> image">
-            <div class="card-body">
-                <h5 class="card-title"><%= products[i].name %></h5>
-                <p class="price"> <%= products[i].price %></p>
-                <p class="card-text"><%= products[i].title %></p>
-                <a href="/home/<%= products[i].id %>" class="">Kirish</a>
-                <form action="/basket/add" method="POST">
-                    <input type="hidden" name="id" value="<%= products[i]._id %> ">
-                    <button type="submit" class="btn btn-danger" >Add</button>
-                </form>
-            </div>
-        </div>
-    </li>
+    <% for(let i in products) { %>
+        <a href="/home/<%= products[i]._id %> " class="anker">
+            <li class="filterDiv <%= products[i].type %>">
+                <div class="card">
+                    <img class="card-img-top image" src="<%= products[i].img %>" alt="<%= products[i].type %> image">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= products[i].name %></h5>
+                        <p class="price"> <%= products[i].price %></p>
+                        <p class="card-text"><%= products[i].title %></p>
+                        <% if ( user.name == 'adminBro' && user.phone == 998001110000 ) { %>
+                            <a href="/edit/<%= products[i]._id %>">edit</a>
+                        <% } %>
+                        <form action="/basket/add" method="POST">
+                            <input type="hidden" name="id" value="<%= products[i]._id %>">
+                            <button type="submit" class="btn btn-outline-primary">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </a>
+    <% } %>
 </ul>
-<% } %>
 <% } else {%>
 <pre> Products did not remain </pre>
 <% } %>

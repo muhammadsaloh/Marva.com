@@ -15,16 +15,16 @@ router.get('/', UserMiddleware, async (request, response) => {
 
 router.post('/', UserMiddleware, async (request, response) => {
     try {
-        let  userId  = request.user.id
+        let  user_id  = request.user._id
         let { name, price, title, img, type } = request.body
-        await createProduct( name, price, title, img, type, userId )
+        await createProduct( name, price, title, img, type, user_id )
         
         response.redirect('/home')
     } catch (e) {
-        response.render('add', {
-            title: "Add",
-            error: e + ""
-        })
+        response.status(400).send({
+           ok: false,
+           message: "Bad request"
+       }) 
     }
 })
 
